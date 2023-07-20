@@ -10,5 +10,15 @@ public class Game {
         System.out.println("Dear " + player.getName() + " Welcome To The Dark and Foggy Island !!");
         System.out.println("Everything that happens here is real.");
         player.selectChar();
+        boolean gameContinue = true;
+        boolean gameStatus = false;
+        while(gameContinue = true){
+           gameContinue = player.selectLocation();
+        }
+        if (gameStatus == false){
+            System.out.println("Your Characters Is Dead");
+            System.out.println("Game Over !!!!!");
+        }
+
     }
 }
