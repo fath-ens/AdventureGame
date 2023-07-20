@@ -6,7 +6,9 @@ public class Game {
         System.out.println("Welcome to Adventure Game");
         System.out.println("Please Enter to Username");
         String UserName = input.nextLine();
-
-        System.out.println("Username : " + UserName);
+        Player player = new Player(UserName);
+        System.out.println("Dear " + player.getName() + " Welcome To The Dark and Foggy Island !!");
+        System.out.println("Everything that happens here is real.");
+        player.selectChar();
     }
 }
