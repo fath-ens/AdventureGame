@@ -27,7 +27,8 @@ public class Player {
     public boolean selectLocation() {
         printInfo();
         Location location = null;
-        Location[] locations = {new SafeHouse(), new ToolStore()};
+        Location[] locations = {new SafeHouse(), new ToolStore(), new Cave(),
+                new Forest(), new River()};
         System.out.println("------------------------------------");
         for (Location loc : locations) {
             System.out.println("ID: " + loc.getId()
@@ -43,8 +44,17 @@ public class Player {
             case 2:
                 location = new ToolStore(this);
                 break;
+            case 3:
+                location = new Cave(this);
+                break;
+            case 4:
+                location = new Forest(this);
+                break;
+            case 5:
+                location = new River(this);
+                break;
             default:
-                location = new SafeHouse(this);
+                selectLocation();
         }
         return location.onLocation();
     }
