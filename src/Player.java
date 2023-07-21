@@ -85,4 +85,7 @@ public class Player {
     public int getDamage() {
         return damage + this.getInventory().getWeapon().getDamage();
     }
+    public int getHealth() {
+        return health + this.getInventory().getArmor().getBlock();
+    }
 }
