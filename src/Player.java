@@ -12,10 +12,20 @@ public class Player {
     private int money;
     private String charName;
     private String name;
+    private Inventory inventory;
     public Player(String name) {
         this.name = name;
+        this.inventory = new Inventory();
+    }
+    public void printInfo(){
+        System.out.println("Characters : "+this.getCharName()
+                +"\nCharacter's Weapon : "+this.getInventory().getWeapon().getName()
+                +"\nDamage : "+this.getDamage()
+                +"\nHealth : "+this.getHealth()
+                +"\nMoney : "+this.getMoney());
     }
     public boolean selectLocation() {
+        printInfo();
         Location location = null;
         Location[] locations = {new SafeHouse(), new ToolStore()};
         System.out.println("------------------------------------");
@@ -70,5 +80,9 @@ public class Player {
             default:
                 initPlayer(new Samurai());
         }
+    }
+
+    public int getDamage() {
+        return damage + this.getInventory().getWeapon().getDamage();
     }
 }

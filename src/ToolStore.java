@@ -16,7 +16,7 @@ public class ToolStore extends NormalLocation{
         return input.nextInt();
     }
 
-    public void printWeapon(){
+    public void MenuWeapon(){
         //silahlar menüsü
         System.out.println(" Weapon Menu");
         for (Weapon weapon : Weapon.weapons()){
@@ -26,16 +26,27 @@ public class ToolStore extends NormalLocation{
                     "\t Price : " + weapon.getPrice());
         }
         System.out.println(Weapon.weapons().length+1 + "   Select To Exit The Store");
+        BuyWeapon();
+    }
+    public void BuyWeapon(){
         System.out.println("Please Select The Weapon You Want To Buy");
-        Weapon selectWeapon;
         int WeaponId = input.nextInt();
-        if (WeaponId<=Weapon.weapons().length && WeaponId > 0) {
+        Weapon selectWeapon;
+        if (WeaponId<=Weapon.weapons().length && WeaponId > 0 && Weapon.getByIdWeapon(WeaponId)!= null) {
             selectWeapon = Weapon.getByIdWeapon(WeaponId);
+            if (selectWeapon.getPrice() > this.getPlayer().getMoney()){
+                System.out.println("You Don't Have Enough Money");
+            }else{
+                System.out.println("You Bought The "+selectWeapon.getName() + " Gun");
+                this.getPlayer().setMoney(this.getPlayer().getMoney()-selectWeapon.getPrice());
+                this.getPlayer().getInventory().setWeapon(selectWeapon);
+                System.out.println("Your Remaining Money : " + this.getPlayer().getMoney());
+            }
         } else if (WeaponId == Weapon.weapons().length+1) {
             //Exit İşlemi
         } else {
             System.out.println("You Have Made a Non-Menu Selection.\n" + "Please choose again.");
-            printWeapon();
+            MenuWeapon();
         }
     }
 
@@ -47,7 +58,7 @@ public class ToolStore extends NormalLocation{
         System.out.println("Welcome To Store");
         switch (selectCase()){
             case 1:
-                printWeapon();
+                MenuWeapon();
                 break;
             case 2:
                 printArmor();
