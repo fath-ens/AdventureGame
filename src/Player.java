@@ -13,6 +13,7 @@ public class Player {
     private String charName;
     private String name;
     private Inventory inventory;
+    private int regHealth;
     public Player(String name) {
         this.name = name;
         this.inventory = new Inventory();
@@ -20,7 +21,7 @@ public class Player {
     public void printInfo(){
         System.out.println("Characters : "+this.getCharName()
                 +"\nCharacter's Weapon : "+this.getInventory().getWeapon().getName()
-                +"\nDamage : "+this.getDamage()
+                +"\nDamage : "+this.getTotalDamage()
                 +"\nHealth : "+this.getHealth()
                 +"\nMoney : "+this.getMoney());
     }
@@ -62,6 +63,7 @@ public class Player {
         this.setDamage(gameChar.getDamage());
         this.setHealth(gameChar.getHealthy());
         this.setMoney(gameChar.getMoney());
+        this.setRegHealth(gameChar.getRegHealth());
 
     }
     public void selectChar(){
@@ -88,14 +90,10 @@ public class Player {
                 initPlayer(new Knight());
                 break;
             default:
-                initPlayer(new Samurai());
+                selectChar();
         }
     }
-
-    public int getDamage() {
+    public int getTotalDamage(){
         return damage + this.getInventory().getWeapon().getDamage();
-    }
-    public int getHealth() {
-        return health + this.getInventory().getArmor().getBlock();
     }
 }

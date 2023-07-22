@@ -14,4 +14,8 @@ public class SafeHouse extends NormalLocation{
         System.out.println("Your Life Has Been Renewed");
         return true;
     }
+
+    public void HealthRegeneration(){
+        this.getPlayer().setHealth(this.getPlayer().getRegHealth());
+    }
 }

@@ -13,6 +13,7 @@ public abstract class GameChar {
     private int damage;
     private int healthy;
     private int money;
+    final int regHealth;
 
 
 }
