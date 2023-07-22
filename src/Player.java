@@ -14,6 +14,7 @@ public class Player {
     private String name;
     private Inventory inventory;
     private int regHealth;
+    private boolean gameStatus ;
     public Player(String name) {
         this.name = name;
         this.inventory = new Inventory();
@@ -29,7 +30,7 @@ public class Player {
         printInfo();
         Location location = null;
         Location[] locations = {new SafeHouse(), new ToolStore(), new Cave(),
-                new Forest(), new River()};
+                new Forest(), new River(), new Mine()};
         System.out.println("------------------------------------");
         for (Location loc : locations) {
             System.out.println("ID: " + loc.getId()
@@ -46,13 +47,33 @@ public class Player {
                 location = new ToolStore(this);
                 break;
             case 3:
-                location = new Cave(this);
+                if (this.getInventory().isFood()){
+                    System.out.println("You Selection The Other Region");
+                    selectLocation();
+                }
+                else {
+                    location = new Cave(this);
+                }
                 break;
             case 4:
-                location = new Forest(this);
+                if (this.getInventory().isFirewood()){
+                    System.out.println("You Selection The Other Region");
+                    selectLocation();
+                }
+                else {
+                    location = new Forest(this);
+                }
                 break;
             case 5:
-                location = new River(this);
+                if (this.getInventory().isWater()){
+                    System.out.println("You Selection The Other Region");
+                    selectLocation();
+                }else {
+                    location = new River(this);
+                }
+                break;
+            case 6:
+                location = new Mine(this);
                 break;
             default:
                 selectLocation();
@@ -95,5 +116,9 @@ public class Player {
     }
     public int getTotalDamage(){
         return damage + this.getInventory().getWeapon().getDamage();
+    }
+
+    public void setGameStatus(boolean gameStatus) {
+        this.gameStatus = gameStatus;
     }
 }

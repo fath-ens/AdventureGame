@@ -1,5 +1,9 @@
-import java.util.Scanner;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.Scanner;
+@Getter
+@Setter
 public class Game {
     private Scanner input = new Scanner(System.in);
     public void start(){
@@ -11,14 +15,16 @@ public class Game {
         System.out.println("Everything that happens here is real.");
         player.selectChar();
         boolean gameContinue = true;
-        boolean gameStatus = false;
         while(gameContinue = true){
            gameContinue = player.selectLocation();
         }
-        if (gameStatus == false){
+        if (player.isGameStatus()){
+            System.out.println("Congratulations");
+            System.out.println(UserName + " Win Game !!!!!!!!!!");
+        }
+        else {
             System.out.println("Your Characters Is Dead");
             System.out.println("Game Over !!!!!");
         }
-
     }
 }
